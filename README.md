@@ -82,6 +82,12 @@ MicShield protects your privacy on auto-pilot:
 
 ## 📦 Installation
 
+### Method 1: Via Homebrew (1 Line)
+```bash
+brew install --cask https://raw.githubusercontent.com/kishorgaikwad2016/MicShield/main/Casks/micshield.rb
+```
+
+### Method 2: Direct DMG Download
 1. Download **[MicShield.dmg](https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg)**.
 2. Open the DMG and drag **MicShield.app** to your **Applications** folder.
 3. Launch MicShield from Applications or Spotlight.
