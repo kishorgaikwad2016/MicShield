@@ -82,9 +82,9 @@ MicShield protects your privacy on auto-pilot:
 
 ## 📦 Installation
 
-### Method 1: Via Homebrew (1 Line)
+### Method 1: Via Homebrew (Recommended)
 ```bash
-brew install --cask https://raw.githubusercontent.com/kishorgaikwad2016/MicShield/main/Casks/micshield.rb
+brew install kishorgaikwad2016/tap/micshield
 ```
 
 ### Method 2: Direct DMG Download
