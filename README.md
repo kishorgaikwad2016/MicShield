@@ -118,6 +118,17 @@ brew install kishorgaikwad2016/tap/micshield
 
 ---
 
+## 🤝 Affiliate & Partner Program
+
+Are you a Mac software reviewer, tech YouTuber, blogger, or newsletter creator?
+- **30% Commission**: Earn ~₹255 ($3.00) on every Pro license sale you refer.
+- **30-Day Cookie Window**: Generous attribution window for referrals.
+- **Automated Payouts**: Handled directly through Lemon Squeezy with zero hassle.
+
+👉 **[Join the MicShield Affiliate Program](https://micshieldapp.lemonsqueezy.com/affiliates)**
+
+---
+
 ## 📬 Support, Privacy & Terms
 
 - **Customer Support**: Email us at [support@micshieldapp.com](mailto:support@micshieldapp.com) or [kishorgaikwad2016@gmail.com](mailto:kishorgaikwad2016@gmail.com) for assistance, bug reports, or license inquiries.
