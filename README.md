@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="media/icon.png" width="128" height="128" alt="MicShield Icon" />
+  <img src="scratch/test_icon.png" width="128" height="128" alt="MicShield Icon" />
 </p>
 
 <h1 align="center">MicShield for macOS</h1>
@@ -114,6 +114,15 @@ brew install kishorgaikwad2016/tap/micshield
 
 - **Free Trial**: 7-day full access with no credit card required.
 - **Pro Lifetime License**: One-time purchase for lifetime updates on up to 5 Macs via [Lemon Squeezy](https://micshieldapp.lemonsqueezy.com/buy/3a0afabc-7d25-468d-a532-ab0e62ff7dfa).
+- **14-Day Money-Back Guarantee**: If you are not completely satisfied with MicShield, email support within 14 days of purchase for a 100% full refund—no questions asked.
+
+---
+
+## 📬 Support, Privacy & Terms
+
+- **Customer Support**: Email us at [support@micshieldapp.com](mailto:support@micshieldapp.com) or [kishorgaikwad2016@gmail.com](mailto:kishorgaikwad2016@gmail.com) for assistance, bug reports, or license inquiries.
+- **Terms & License**: View our complete [End User License Agreement (LICENSE.md)](LICENSE.md).
+- **Privacy & Security**: View our [Security Policy (SECURITY.md)](SECURITY.md). Zero telemetry, zero tracking, 100% offline.
 
 ---
 
