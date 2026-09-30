@@ -13,7 +13,7 @@ We take the security and privacy of MicShield users seriously. Because MicShield
 
 If you discover a security vulnerability in MicShield:
 1. Please **do not** report security issues through public GitHub issue trackers.
-2. Email your findings and reproduction steps to: `kishorgaikwad2016@gmail.com`
+2. Email your findings and reproduction steps to: `kishorgaikwad50@gmail.com`
 3. We will acknowledge receipt of your report within 24 hours and investigate promptly.
 
 ## Security Architecture

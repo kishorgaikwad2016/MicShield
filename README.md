@@ -131,7 +131,7 @@ Are you a Mac software reviewer, tech YouTuber, blogger, or newsletter creator?
 
 ## 📬 Support, Privacy & Terms
 
-- **Customer Support**: Email us at [support@micshieldapp.com](mailto:support@micshieldapp.com) or [kishorgaikwad2016@gmail.com](mailto:kishorgaikwad2016@gmail.com) for assistance, bug reports, or license inquiries.
+- **Customer Support**: Email us at [kishorgaikwad50@gmail.com](mailto:kishorgaikwad50@gmail.com) for assistance, bug reports, or license inquiries.
 - **Terms & License**: View our complete [End User License Agreement (LICENSE.md)](LICENSE.md).
 - **Privacy & Security**: View our [Security Policy (SECURITY.md)](SECURITY.md). Zero telemetry, zero tracking, 100% offline.
 
