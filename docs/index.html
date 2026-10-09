@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MicShield for macOS — Hardware Microphone Kill-Switch & MacBook Notch HUD</title>
+  <meta name="description" content="The hardware-level CoreAudio microphone kill-switch, physical MacBook Notch HUD, Push-to-Talk, and smart hot-mic safety net for macOS. ~2MB native Swift. $9.99 lifetime license." />
+  <meta name="keywords" content="macOS microphone mute, MacBook notch HUD, CoreAudio microphone blocker, push to talk Mac, mute mic shortcut Mac, Zoom mute shortcut, stop AirPods muffled audio Mac, MicShield" />
+  <link rel="canonical" href="https://kishorgaikwad2016.github.io/MicShield/" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kishorgaikwad2016.github.io/MicShield/" />
+  <meta property="og:title" content="MicShield for macOS — Hardware Mic Kill-Switch & MacBook Notch HUD" />
+  <meta property="og:description" content="Lock your Mac microphone at the CoreAudio hardware level with one keystroke (⇧⌘M). Physical MacBook Notch HUD, Push-to-Talk, and smart auto-mute safety net." />
+  <meta property="og:image" content="https://kishorgaikwad2016.github.io/MicShield/icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MicShield for macOS — Hardware Mic Kill-Switch & MacBook Notch HUD" />
+  <meta name="twitter:description" content="Native Swift (~2MB) CoreAudio microphone kill-switch, MacBook Notch HUD, and smart hot-mic safety net. 7-day free trial, $9.99 lifetime license." />
+
+  <!-- Schema.org Rich Snippet -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MicShield",
+    "operatingSystem": "macOS 14.0+",
+    "applicationCategory": "UtilitiesApplication",
+    "downloadUrl": "https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg",
+    "softwareVersion": "1.0.0",
+    "description": "Hardware-level CoreAudio microphone kill-switch, physical MacBook Notch HUD, Push-to-Talk, and smart hot-mic safety net for macOS.",
+    "offers": {
+      "@type": "Offer",
+      "price": "9.99",
+      "priceCurrency": "USD",
+      "url": "https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #07080c;
+      --bg-card: rgba(18, 20, 28, 0.78);
+      --bg-card-hover: rgba(26, 29, 42, 0.92);
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --red: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.45);
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.4);
+      --blue: #3b82f6;
+      --accent-grad: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 52%),
+        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 45%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(7, 8, 12, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+    }
+
+    .version-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-sm {
+      padding: 8px 15px;
+      font-size: 0.88rem;
+      border-radius: 10px;
+    }
+
+    .btn-lg {
+      padding: 15px 28px;
+      font-size: 1.05rem;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #090a0f;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #f1f5f9;
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.28);
+    }
+
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(34, 197, 94, 0.42);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 72px 0 56px;
+      text-align: center;
+    }
+
+    .trust-pills {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+    }
+
+    .trust-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.3rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      max-width: 880px;
+      margin: 0 auto 20px;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #ff5f5f 0%, #fb923c 55%, #facc15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p.subtitle {
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 34px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+    }
+
+    .brew-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(15, 18, 28, 0.9);
+      border: 1px solid var(--border-strong);
+      padding: 9px 14px 9px 18px;
+      border-radius: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 48px;
+    }
+
+    .brew-box button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+
+    .brew-box button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Interactive Notch Demo */
+    .mac-preview-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #161925 0%, #0c0e16 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: 22px;
+      padding: 0 0 32px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.75), 0 0 60px rgba(239, 68, 68, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mac-menubar {
+      height: 36px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      position: relative;
+    }
+
+    .mac-menubar-left, .mac-menubar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .notch-container {
+      position: relative;
+      margin: 0 auto;
+      width: 260px;
+      height: 44px;
+      background: #000000;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 28px var(--red-glow), inset 0 -2px 0 var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.65);
+      border-top: none;
+    }
+
+    .notch-container.live {
+      box-shadow: 0 0 28px var(--green-glow), inset 0 -2px 0 var(--green);
+      border-color: rgba(34, 197, 94, 0.65);
+    }
+
+    .notch-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+      transition: all 0.25s;
+    }
+
+    .notch-container.live .notch-dot {
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .notch-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fca5a5;
+    }
+
+    .notch-container.live .notch-label {
+      color: #86efac;
+    }
+
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 16px;
+    }
+
+    .waveform span {
+      width: 3px;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--red);
+      transition: height 0.2s ease, background 0.2s ease;
+    }
+
+    .notch-container.live .waveform span {
+      background: var(--green);
+      animation: wave 0.7s infinite ease-in-out alternate;
+    }
+
+    .notch-container.live .waveform span:nth-child(2) { animation-delay: 0.15s; }
+    .notch-container.live .waveform span:nth-child(3) { animation-delay: 0.3s; }
+    .notch-container.live .waveform span:nth-child(4) { animation-delay: 0.1s; }
+
+    @keyframes wave {
+      0% { height: 4px; }
+      100% { height: 15px; }
+    }
+
+    .demo-body {
+      padding: 36px 24px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .demo-status-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 28px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .demo-status-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .demo-status-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .kbd-btn {
+      background: linear-gradient(180deg, #272b3a 0%, #191c26 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #0b0d13;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .kbd-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #0b0d13;
+    }
+
+    /* Section Headers */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #f87171;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Bento Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      background: var(--bg-card-hover);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .card ul li::before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* Pain Points Banner */
+    .pain-box {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(18, 20, 28, 0.9) 100%);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 22px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .pain-item h4 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .pain-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Pricing */
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--green);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.08) 0%, rgba(18, 20, 28, 0.95) 100%);
+      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.12);
+      position: relative;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -13px;
+      right: 24px;
+      background: var(--green);
+      color: #052e16;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .price-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 12px 0 4px;
+    }
+
+    .price-num span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .price-list {
+      list-style: none;
+      margin: 24px 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-size: 0.94rem;
+      color: #e2e8f0;
+    }
+
+    .price-list li::before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 800;
+      margin-right: 6px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    details.faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 22px;
+    }
+
+    details.faq-item summary {
+      font-weight: 600;
+      font-size: 1.02rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item p {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .pain-box { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <img src="icon.png" alt="MicShield Icon" />
+        <span>MicShield</span>
+        <span class="version-pill">v1.0.0</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#safety-net">Safety Net</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/kishorgaikwad2016/MicShield" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <div class="nav-ctas">
+        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-sm btn-outline">
+           Download Free
+        </a>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-sm btn-buy">
+          Buy Pro — $9.99
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="trust-pills">
+          <div class="trust-pill"><span class="dot"></span> Apple Notarized</div>
+          <div class="trust-pill">⚡ ~2 MB Native Swift 6</div>
+          <div class="trust-pill">💻 Universal 2 (M1–M4 & Intel)</div>
+          <div class="trust-pill">🔒 100% Offline · Zero Telemetry</div>
+        </div>
+
+        <h1>
+          Never Ask <span class="gradient-text">“Was I On Mute?!”</span> Ever Again.
+        </h1>
+
+        <p class="subtitle">
+          MicShield locks your Mac's microphone at the <strong>CoreAudio hardware level</strong> with a single keystroke, turns your <strong>MacBook Camera Notch</strong> into a live mute HUD, and automatically silences your mic when calls end.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-lg btn-primary">
+             Download MicShield for macOS (.dmg)
+          </a>
+          <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-lg btn-buy">
+            ⚡ Get Lifetime Pro License — $9.99
+          </a>
+        </div>
+
+        <p class="hero-meta">
+          Free 7-day full trial · macOS 14 Sonoma & macOS 15 Sequoia · One-time purchase (No subscription)
+        </p>
+
+        <div class="brew-box">
+          <span>$ brew install kishorgaikwad2016/tap/micshield</span>
+          <button onclick="copyBrew(this)">Copy</button>
+        </div>
+
+        <!-- Interactive Notch Simulator -->
+        <div class="mac-preview-wrap">
+          <div class="mac-menubar">
+            <div class="mac-menubar-left">
+              <span></span>
+              <strong>MicShield</strong>
+              <span>File</span>
+              <span>Settings</span>
+            </div>
+            <div class="mac-menubar-right">
+              <span id="menubar-status-icon">🛡️ Locked</span>
+              <span>Wi-Fi</span>
+              <span>100%</span>
+            </div>
+          </div>
+
+          <div id="notch-demo" class="notch-container">
+            <span class="notch-dot"></span>
+            <span id="notch-text" class="notch-label">MIC MUTED · LOCKED</span>
+            <div class="waveform">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="demo-body">
+            <div class="demo-status-card">
+              <div id="demo-title" class="demo-status-title">🔴 Hardware Input Locked (CoreAudio HAL)</div>
+              <div id="demo-desc" class="demo-status-sub">
+                All audio input devices are silenced at the system hardware level. Zoom, Teams, Meet, and background apps cannot hear you.
+              </div>
+              <button class="kbd-btn" onclick="toggleNotchDemo()">
+                Press ⇧⌘M — Test Interactive Notch HUD
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why macOS Orange Dot Isn't Enough -->
+    <section>
+      <div class="container">
+        <div class="pain-box">
+          <div class="pain-item">
+            <h4>🍊 The macOS Orange Dot Is Too Late</h4>
+            <p>macOS only shows an orange dot <em>after</em> an app is already listening to your mic. MicShield blocks audio input at the CoreAudio hardware layer before any app can capture a sound.</p>
+          </div>
+          <div class="pain-item">
+            <h4>🎧 Stop AirPods Muffled Audio Drops</h4>
+            <p>When background Electron apps or browser tabs touch your mic input, macOS forces Bluetooth headphones into muffled Hands-Free mode. MicShield keeps your mic locked so your audio stays crystal clear.</p>
+          </div>
+          <div class="pain-item">
+            <h4>🎯 One Shortcut Across Every App</h4>
+            <p>Stop hunting for different mute buttons in Zoom, Microsoft Teams, Google Meet, Slack Huddles, Discord, or FaceTime. One global hotkey (<code>⇧⌘M</code>) rules them all.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Bento -->
+    <section id="features">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Engineered for macOS</span>
+          <h2 class="section-title">Everything You Need for Total Mic Confidence</h2>
+          <p class="section-desc">Built 100% in native Swift 6 & AppKit. No Electron bloat, zero cloud servers, and under 2 MB on disk.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>CoreAudio Hardware Kill-Switch</h3>
+            <p>Directly locks all macOS input devices at the hardware abstraction layer with zero latency.</p>
+            <ul>
+              <li>Works across Zoom, Teams, Meet, Slack & browsers</li>
+              <li>Blocks background unmute attempts automatically</li>
+              <li>Protects built-in, USB & Bluetooth microphones</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">💻</div>
+            <h3>Physical MacBook Notch HUD</h3>
+            <p>Turns your MacBook Air or MacBook Pro camera notch into a Dynamic Island-style privacy indicator.</p>
+            <ul>
+              <li>Glows crimson red around the notch when muted</li>
+              <li>Real-time speaking waveform when your mic is live</li>
+              <li>Floating Virtual Island pill on external monitors</li>
+            </ul>
+          </div>
+
+          <div class="card" id="safety-net">
+            <div class="card-icon">🌙</div>
+            <h3>Smart Hot-Mic Safety Net</h3>
+            <p>Automatic guardrails that mute your microphone when you forget:</p>
+            <ul>
+              <li>Auto-Mute on Mac Sleep & Screen Lock</li>
+              <li>AirPods / Headphone Disconnect Guard</li>
+              <li>Auto-Mute when Zoom, Teams, or Meet closes</li>
+              <li>10-minute Idle Timeout protection</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⌨️</div>
+            <h3>3 Pro Shortcut Modes</h3>
+            <p>Customize your workflow with instant keyboard control from any window:</p>
+            <ul>
+              <li><strong>Toggle Mute:</strong> Tap <code>⇧⌘M</code> to lock/unlock</li>
+              <li><strong>Push-to-Talk:</strong> Hold key to speak like a walkie-talkie</li>
+              <li><strong>Push-to-Mute:</strong> Hold key to silence coughs</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔊</div>
+            <h3>HD Acoustic Earcon Feedback</h3>
+            <p>Know your mic state without even looking at the screen thanks to crisp audio confirmation tones.</p>
+            <ul>
+              <li><strong>Chime:</strong> Smooth modern acoustic earcons</li>
+              <li><strong>System:</strong> Native macOS audio feedback</li>
+              <li><strong>Subtle:</strong> Quiet haptic-style clicks</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Native 6-Language Support</h3>
+            <p>Fully localized interface and menu bar controls right out of the box:</p>
+            <ul>
+              <li>🇺🇸 English & 🇩🇪 Deutsch (German)</li>
+              <li>🇯🇵 日本語 (Japanese) & 🇫🇷 Français</li>
+              <li>🇨🇳 简体中文 & 🇪🇸 Español</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">No Subscriptions Ever</span>
+          <h2 class="section-title">Pay Once. Own MicShield Forever.</h2>
+          <p class="section-desc">Try every Pro feature free for 7 days. Upgrade to a lifetime license for less than the price of lunch.</p>
+        </div>
+
+        <div class="pricing-wrap">
+          <div class="price-card">
+            <div>
+              <h3>7-Day Free Trial</h3>
+              <div class="price-num">$0 <span>/ 7 days</span></div>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Test every feature on your Mac with no credit card required.</p>
+              <ul class="price-list">
+                <li>Full CoreAudio Hardware Kill-Switch</li>
+                <li>MacBook Notch HUD & Virtual Island</li>
+                <li>Push-to-Talk & Push-to-Mute Modes</li>
+                <li>All 5 Smart Safety Net Automations</li>
+                <li>Apple Notarized Universal DMG</li>
+              </ul>
+            </div>
+            <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-lg btn-outline" style="width: 100%;">
+               Download Free Trial (.dmg)
+            </a>
+          </div>
+
+          <div class="price-card featured">
+            <span class="popular-badge">Lifetime Deal</span>
+            <div>
+              <h3>MicShield Pro Lifetime</h3>
+              <div class="price-num">$9.99 <span>USD / one-time</span></div>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Instant license key delivery via Dodo Payments (Apple Pay, Google Pay & Cards).</p>
+              <ul class="price-list">
+                <li><strong>Lifetime License</strong> — No recurring fees ever</li>
+                <li>Activate on up to <strong>5 Macs</strong></li>
+                <li>All future macOS updates included free</li>
+                <li>100% Offline after instant activation</li>
+                <li><strong>14-Day 100% Money-Back Guarantee</strong></li>
+              </ul>
+            </div>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-lg btn-buy" style="width: 100%;">
+              ⚡ Buy Lifetime License — $9.99
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list" style="margin-top: 36px;">
+          <details class="faq-item" open>
+            <summary>How is MicShield different from clicking Mute inside Zoom or Teams?</summary>
+            <p>App-level mute buttons only silence that specific app—other background tabs, Electron apps, or voice recorders can still listen to your microphone. MicShield mutes your audio input at the macOS CoreAudio hardware abstraction layer, so zero audio signal reaches any app on your Mac.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What happens if I have an external monitor or a Mac without a camera notch?</summary>
+            <p>On MacBooks with a camera cutout, MicShield hugs the physical notch. On non-notch Macs or external displays, MicShield automatically renders a sleek floating "Virtual Island" pill at the top of your screen.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is MicShield notarized by Apple? Does it record or send any audio to the cloud?</summary>
+            <p>Yes, MicShield is 100% signed and notarized by Apple (`Developer ID: Amar Mote - 32WL3CJ7B6`) and runs inside Apple's Hardened Runtime. It has zero telemetry, zero analytics, and never records or transmits your audio anywhere.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I activate my Pro license key after purchasing?</summary>
+            <p>After completing your $9.99 checkout on Dodo Payments, you'll receive your license key via email immediately. Click the MicShield icon in your Mac's menu bar, select "Activate License...", and paste your key.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com/kishorgaikwad2016/MicShield">GitHub Repository</a>
+        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg">Direct DMG Download</a>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1">Buy Pro License ($9.99)</a>
+        <a href="https://micshield.macupdate.com/">MacUpdate</a>
+        <a href="https://github.com/kishorgaikwad2016/MicShield/blob/main/LICENSE.md">EULA & Refund Policy</a>
+        <a href="https://github.com/kishorgaikwad2016/MicShield/blob/main/SECURITY.md">Privacy & Security</a>
+        <a href="mailto:kishorgaikwad50@gmail.com">Support (kishorgaikwad50@gmail.com)</a>
+      </div>
+      <p>© 2026 MicShield for macOS. Signed & Notarized by Apple. Made with ❤️ for Mac users worldwide.</p>
+    </div>
+  </footer>
+
+  <script>
+    let isMuted = true;
+    function toggleNotchDemo() {
+      isMuted = !isMuted;
+      const notch = document.getElementById('notch-demo');
+      const text = document.getElementById('notch-text');
+      const title = document.getElementById('demo-title');
+      const desc = document.getElementById('demo-desc');
+      const menuIcon = document.getElementById('menubar-status-icon');
+
+      if (isMuted) {
+        notch.classList.remove('live');
+        text.textContent = 'MIC MUTED · LOCKED';
+        title.textContent = '🔴 Hardware Input Locked (CoreAudio HAL)';
+        desc.textContent = 'All audio input devices are silenced at the system hardware level. Zoom, Teams, Meet, and background apps cannot hear you.';
+        menuIcon.textContent = '🛡️ Locked';
+      } else {
+        notch.classList.add('live');
+        text.textContent = 'MIC LIVE · ON AIR';
+        title.textContent = '🟢 Microphone Live — Real-Time Notch Waveform';
+        desc.textContent = 'Your microphone is active and broadcasting. Press ⇧⌘M or close your meeting to lock hardware input immediately.';
+        menuIcon.textContent = '🎙️ Live';
+      }
+    }
+
+    function copyBrew(btn) {
+      navigator.clipboard.writeText('brew install kishorgaikwad2016/tap/micshield');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = orig; }, 1800);
+    }
+  </script>
+</body>
+</html>
