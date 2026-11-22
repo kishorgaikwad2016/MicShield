@@ -2,8 +2,8 @@
 
 Copyright (c) 2026 MicShield. All rights reserved.
 
-## 1. Evaluation & Free Trial
-MicShield grants you a non-exclusive, non-transferable license to use the Software for evaluation purposes free of charge for a period of seven (7) days from the date of first installation.
+## 1. Freemium Tier & 7-Day Pro Evaluation
+CoreAudio hardware mute toggle, input device selection, gain slider, audio feedback cues, and center HUD are free for indefinite use at no charge. MicShield also grants you an automatic seven (7) day evaluation of all Pro features (MacBook Notch HUD, Floating Pill, Push-to-Talk/Push-to-Mute, and Smart Safety Net automations) from first launch.
 
 ## 2. Commercial / Lifetime License
 Upon purchasing a Lifetime Pro License, you are granted a perpetual, non-exclusive license to activate and run the Software on up to five (5) macOS devices owned or controlled by you.

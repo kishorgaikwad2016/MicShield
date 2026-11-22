@@ -29,8 +29,8 @@ Never experience that heart-stopping panic: *"Wait... was I on mute just now?!"*
     <img src="https://img.shields.io/badge/Website-MicShield%20Official-0F172A?style=for-the-badge&logo=safari&logoColor=white" alt="MicShield Website" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg">
-    <img src="https://img.shields.io/badge/Download-MicShield.dmg%20(v1.0.0)-blue?style=for-the-badge&logo=apple" alt="Download MicShield DMG" />
+  <a href="https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg">
+    <img src="https://img.shields.io/badge/Download-MicShield.dmg-blue?style=for-the-badge&logo=apple" alt="Download MicShield DMG" />
   </a>
   &nbsp;&nbsp;
   <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1">
@@ -38,27 +38,30 @@ Never experience that heart-stopping panic: *"Wait... was I on mute just now?!"*
   </a>
 </p>
 
+> **Freemium Pricing:** CoreAudio Hardware Mute (`⇧⌘M`), gain slider, waveform monitor, and center HUD are **Free Forever**. Includes an automatic **7-Day Pro Trial**, then unlock Notch HUD, Floating Pill, Push-to-Talk/Mute & Smart Safety Net for **$9.99 one-time**.
+
 ---
 
 ## ✨ Key Features
 
 ### 🛡️ Hardware-Level Global Mute
 - Directly controls CoreAudio input hardware.
+- Mutes your active microphone, and carries the mute along when you switch devices.
 - Works across **all meeting apps & browsers** (Zoom, Teams, Meet, Slack, Discord, Webex, Loom, FaceTime) without requiring individual app integrations.
 - Instant response with zero latency.
 
 ### 💻 Physical MacBook Notch HUD (Dynamic Island for Mac)
 - **MacBook Air & Pro (with Camera Notch)**: The Notch glows red when muted and pulses when broadcasting, hugging your camera cutout cleanly.
 - **Non-Notch Displays & External Monitors**: Automatically transitions into a sleek, floating "Virtual Island" pill at the top of your screen.
-- Real-time audio waveform meter shows your live speaking volume.
+- The panel shows a real-time waveform of your speaking volume while it is open.
 
 ### 🌙 Smart Safety Net Automations
 MicShield protects your privacy on auto-pilot:
 - **Auto-Mute on Sleep**: Automatically mutes the mic when your Mac goes to sleep.
 - **Auto-Mute on Screen Lock**: Mutes as soon as you lock your screen or walk away.
 - **Headphone Disconnect Guard**: Instantly mutes if your AirPods or Bluetooth headset disconnects to prevent speaker/mic bleed.
-- **Meeting Exit Guard**: Mutes automatically when Zoom, Teams, or Meet terminates.
-- **Idle Timeout**: Automatically mutes if your Mac is idle for more than 10 minutes.
+- **Meeting Exit Guard**: Mutes automatically when Zoom, Teams, Webex, Slack or another known meeting app quits.
+- **Idle Timeout**: Automatically mutes if nobody touches your Mac for 10 minutes (5–30 minutes or off).
 
 ### ⌨️ Pro Shortcut Modes
 - **Toggle Mute**: Press shortcut (`⇧⌘M` or custom) to switch between Muted and Live.
@@ -92,17 +95,17 @@ brew install kishorgaikwad2016/tap/micshield
 ```
 
 ### Method 2: Direct DMG Download
-1. Download **[MicShield.dmg](https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg)**.
+1. Download **[MicShield.dmg](https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg)**.
 2. Open the DMG and drag **MicShield.app** to your **Applications** folder.
 3. Launch MicShield from Applications or Spotlight.
-4. Enjoy your **7-day full free trial** with all Pro features unlocked!
+4. Keep **Core Hardware Mute (`⇧⌘M`) free forever**, plus enjoy an automatic **7-day full Pro trial** right after install!
 
 ---
 
 ## 🔒 Security & Privacy
 
-- **100% Apple-Notarized**: Verified and signed with Apple Developer ID (`Amar Mote - 32WL3CJ7B6`). Zero Gatekeeper warnings.
-- **Zero Telemetry / Zero Cloud Audio**: Your audio never leaves your Mac. MicShield does not record, store, or transmit any audio data.
+- **100% Apple-Notarized**: Built by Kishor Gaikwad and signed/notarized with Apple Developer ID (`Amar Mote - 32WL3CJ7B6`). Zero Gatekeeper warnings.
+- **Zero Telemetry / Zero Cloud Audio**: Your audio never leaves your Mac. MicShield does not record, store, or transmit any audio data. It goes online only to activate a license (Dodo Payments) and to check GitHub for a new version once a day, which you can turn off.
 - **Hardened Runtime**: Runs in Apple's secure hardened runtime environment.
 
 ---
@@ -116,16 +119,17 @@ brew install kishorgaikwad2016/tap/micshield
 
 ## 📄 License & Pricing
 
-- **Free Trial**: 7-day full access with no credit card required.
-- **Pro Lifetime License**: One-time purchase for lifetime updates on up to 5 Macs via [Dodo Payments (Apple Pay, Google Pay & Cards)](https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1).
-- **14-Day Money-Back Guarantee**: If you are not completely satisfied with MicShield, email support within 14 days of purchase for a 100% full refund—no questions asked.
+- **Free Forever Tier**: Unlimited CoreAudio hardware kill-switch (`⇧⌘M`), waveform visualizer, gain slider, device selector, audio cues, center HUD, and 6 languages.
+- **7-Day Pro Trial**: Automatic full access to Notch HUD, Floating Pill, Push-to-Talk/Mute, and all 5 Smart Safety Net automations — no credit card required.
+- **Pro Lifetime License — `$9.99`**: One-time purchase for lifetime updates on up to 5 Macs via [Dodo Payments (Apple Pay, Google Pay & Cards)](https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1).
+- **14-Day Money-Back Guarantee**: If you are not completely satisfied with MicShield Pro, email support within 14 days of purchase for a 100% full refund — no questions asked.
 
 ---
 
 ## 🤝 Affiliate & Partner Program
 
 Are you a Mac software reviewer, tech YouTuber, blogger, or newsletter creator?
-- **30% Commission**: Earn ~₹255 ($3.00) on every Pro license sale you refer.
+- **30% Commission**: Earn 30% commission on every Pro license sale you refer.
 - **30-Day Cookie Window**: Generous attribution window for referrals.
 - **Automated Payouts**: Handled directly with zero hassle.
 
@@ -137,7 +141,7 @@ Are you a Mac software reviewer, tech YouTuber, blogger, or newsletter creator?
 
 - **Customer Support**: Email us at [kishorgaikwad50@gmail.com](mailto:kishorgaikwad50@gmail.com) for assistance, bug reports, or license inquiries.
 - **Terms & License**: View our complete [End User License Agreement (LICENSE.md)](LICENSE.md).
-- **Privacy & Security**: View our [Security Policy (SECURITY.md)](SECURITY.md). Zero telemetry, zero tracking, 100% offline.
+- **Privacy & Security**: View our [Security Policy (SECURITY.md)](SECURITY.md). Zero telemetry, zero tracking.
 
 ---
 

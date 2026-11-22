@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MicShield for macOS — Hardware Microphone Kill-Switch & MacBook Notch HUD</title>
-  <meta name="description" content="The hardware-level CoreAudio microphone kill-switch, physical MacBook Notch HUD, Push-to-Talk, and smart hot-mic safety net for macOS. ~2MB native Swift. $9.99 lifetime license." />
-  <meta name="keywords" content="macOS microphone mute, MacBook notch HUD, CoreAudio microphone blocker, push to talk Mac, mute mic shortcut Mac, Zoom mute shortcut, stop AirPods muffled audio Mac, MicShield" />
+  <title>MicShield for macOS — Free CoreAudio Mic Kill-Switch & $9.99 MacBook Notch HUD</title>
+  <meta name="description" content="Free forever CoreAudio microphone kill-switch for macOS. Upgrade to Pro (MacBook Notch HUD, Push-to-Talk & Smart Safety Net) for a $9.99 lifetime license. ~2MB native Swift." />
+  <meta name="keywords" content="macOS microphone mute, free mic mute Mac, MacBook notch HUD, CoreAudio microphone blocker, push to talk Mac, mute mic shortcut Mac, Zoom mute shortcut, MicShield" />
   <link rel="canonical" href="https://kishorgaikwad2016.github.io/MicShield/" />
   <link rel="icon" type="image/png" href="icon.png" />
   <link rel="apple-touch-icon" href="icon.png" />
@@ -13,12 +13,12 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kishorgaikwad2016.github.io/MicShield/" />
-  <meta property="og:title" content="MicShield for macOS — Hardware Mic Kill-Switch & MacBook Notch HUD" />
-  <meta property="og:description" content="Lock your Mac microphone at the CoreAudio hardware level with one keystroke (⇧⌘M). Physical MacBook Notch HUD, Push-to-Talk, and smart auto-mute safety net." />
+  <meta property="og:title" content="MicShield for macOS — Free Mic Kill-Switch & $9.99 MacBook Notch HUD" />
+  <meta property="og:description" content="Lock your Mac microphone at the CoreAudio hardware level (⇧⌘M) free forever. Unlock the MacBook Notch HUD, Push-to-Talk & auto-mute Safety Net for $9.99 one-time." />
   <meta property="og:image" content="https://kishorgaikwad2016.github.io/MicShield/icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MicShield for macOS — Hardware Mic Kill-Switch & MacBook Notch HUD" />
-  <meta name="twitter:description" content="Native Swift (~2MB) CoreAudio microphone kill-switch, MacBook Notch HUD, and smart hot-mic safety net. 7-day free trial, $9.99 lifetime license." />
+  <meta name="twitter:title" content="MicShield for macOS — Free Mic Kill-Switch & $9.99 MacBook Notch HUD" />
+  <meta name="twitter:description" content="CoreAudio mic kill-switch Free Forever. 7-Day Pro Trial, then $9.99 Lifetime Pro license." />
 
   <!-- Schema.org Rich Snippet -->
   <script type="application/ld+json">
@@ -28,15 +28,24 @@
     "name": "MicShield",
     "operatingSystem": "macOS 14.0+",
     "applicationCategory": "UtilitiesApplication",
-    "downloadUrl": "https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg",
-    "softwareVersion": "1.0.0",
-    "description": "Hardware-level CoreAudio microphone kill-switch, physical MacBook Notch HUD, Push-to-Talk, and smart hot-mic safety net for macOS.",
-    "offers": {
-      "@type": "Offer",
-      "price": "9.99",
-      "priceCurrency": "USD",
-      "url": "https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1"
-    }
+    "downloadUrl": "https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg",
+    "softwareVersion": "1.0.1",
+    "description": "Free forever hardware-level CoreAudio microphone kill-switch, plus physical MacBook Notch HUD, Push-to-Talk, and smart hot-mic safety net for macOS.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Free Forever Core Mute + 7-Day Pro Trial",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "MicShield Pro Lifetime",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "url": "https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1"
+      }
+    ]
   }
   </script>
 
@@ -530,6 +539,43 @@
       margin-bottom: 18px;
     }
 
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tier-pill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tier-pill.free {
+      background: rgba(34, 197, 94, 0.14);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #86efac;
+    }
+
+    .tier-pill.pro {
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.38);
+      color: #fdba74;
+    }
+
+    .strike-price {
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-decoration: line-through;
+      margin-right: 6px;
+    }
+
     .card h3 {
       font-size: 1.2rem;
       font-weight: 700;
@@ -721,7 +767,7 @@
       <a href="#" class="brand">
         <img src="icon.png" alt="MicShield Icon" />
         <span>MicShield</span>
-        <span class="version-pill">v1.0.0</span>
+        <span class="version-pill">v1.0.1</span>
       </a>
       <nav class="nav-links">
         <a href="#features">Features</a>
@@ -731,11 +777,11 @@
         <a href="https://github.com/kishorgaikwad2016/MicShield" target="_blank" rel="noopener">GitHub</a>
       </nav>
       <div class="nav-ctas">
-        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-sm btn-outline">
+        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg" class="btn btn-sm btn-outline">
            Download Free
         </a>
         <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-sm btn-buy">
-          Buy Pro — $9.99
+          Go Pro — $9.99
         </a>
       </div>
     </div>
@@ -747,9 +793,10 @@
       <div class="container">
         <div class="trust-pills">
           <div class="trust-pill"><span class="dot"></span> Apple Notarized</div>
+          <div class="trust-pill">🆓 Core Mute Free Forever</div>
           <div class="trust-pill">⚡ ~2 MB Native Swift 6</div>
           <div class="trust-pill">💻 Universal 2 (M1–M4 & Intel)</div>
-          <div class="trust-pill">🔒 100% Offline · Zero Telemetry</div>
+          <div class="trust-pill">🔒 No Recording · Zero Telemetry</div>
         </div>
 
         <h1>
@@ -757,20 +804,20 @@
         </h1>
 
         <p class="subtitle">
-          MicShield locks your Mac's microphone at the <strong>CoreAudio hardware level</strong> with a single keystroke, turns your <strong>MacBook Camera Notch</strong> into a live mute HUD, and automatically silences your mic when calls end.
+          Lock your Mac's microphone at the <strong>CoreAudio hardware level</strong> for <strong>free forever</strong>—plus turn your <strong>MacBook Camera Notch</strong> into a live HUD, add <strong>Push-to-Talk</strong>, and auto-mute when calls end.
         </p>
 
         <div class="hero-cta-group">
-          <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-lg btn-primary">
-             Download MicShield for macOS (.dmg)
+          <a href="https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg" class="btn btn-lg btn-primary">
+             Download Free for macOS (.dmg)
           </a>
           <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-lg btn-buy">
-            ⚡ Get Lifetime Pro License — $9.99
+            ⚡ Unlock Lifetime Pro — $9.99
           </a>
         </div>
 
         <p class="hero-meta">
-          Free 7-day full trial · macOS 14 Sonoma & macOS 15 Sequoia · One-time purchase (No subscription)
+          Core Hardware Mute Free Forever · 7-Day Pro Trial Included · $9.99 One-Time · 14-Day Money-Back Guarantee
         </p>
 
         <div class="brew-box">
@@ -806,7 +853,7 @@
             <div class="demo-status-card">
               <div id="demo-title" class="demo-status-title">🔴 Hardware Input Locked (CoreAudio HAL)</div>
               <div id="demo-desc" class="demo-status-sub">
-                All audio input devices are silenced at the system hardware level. Zoom, Teams, Meet, and background apps cannot hear you.
+                Your microphone is silenced at the system level. Zoom, Teams, Meet, and background apps cannot hear you.
               </div>
               <button class="kbd-btn" onclick="toggleNotchDemo()">
                 Press ⇧⌘M — Test Interactive Notch HUD
@@ -823,15 +870,15 @@
         <div class="pain-box">
           <div class="pain-item">
             <h4>🍊 The macOS Orange Dot Is Too Late</h4>
-            <p>macOS only shows an orange dot <em>after</em> an app is already listening to your mic. MicShield blocks audio input at the CoreAudio hardware layer before any app can capture a sound.</p>
+            <p>macOS only shows an orange dot <em>after</em> an app is already listening to your mic. Muted with MicShield, your active microphone sends silence to every app, whether or not it is listening.</p>
           </div>
           <div class="pain-item">
-            <h4>🎧 Stop AirPods Muffled Audio Drops</h4>
-            <p>When background Electron apps or browser tabs touch your mic input, macOS forces Bluetooth headphones into muffled Hands-Free mode. MicShield keeps your mic locked so your audio stays crystal clear.</p>
+            <h4>🎧 Safe When Headphones Drop</h4>
+            <p>If your AirPods or headset disconnect, macOS switches to the built-in mic. MicShield carries your mute to the new mic, and can mute it automatically if you were live.</p>
           </div>
           <div class="pain-item">
             <h4>🎯 One Shortcut Across Every App</h4>
-            <p>Stop hunting for different mute buttons in Zoom, Microsoft Teams, Google Meet, Slack Huddles, Discord, or FaceTime. One global hotkey (<code>⇧⌘M</code>) rules them all.</p>
+            <p>Stop hunting for different mute buttons in Zoom, Microsoft Teams, Google Meet, Slack Huddles, Discord, or FaceTime. One global hotkey (<code>⇧⌘M</code>) rules them all—free forever.</p>
           </div>
         </div>
       </div>
@@ -843,57 +890,72 @@
         <div class="text-center">
           <span class="section-tag">Engineered for macOS</span>
           <h2 class="section-title">Everything You Need for Total Mic Confidence</h2>
-          <p class="section-desc">Built 100% in native Swift 6 & AppKit. No Electron bloat, zero cloud servers, and under 2 MB on disk.</p>
+          <p class="section-desc">Built 100% in native Swift 6 & AppKit. Core muting is free forever; upgrade anytime for a $9.99 lifetime Pro license.</p>
         </div>
 
         <div class="grid-3">
           <div class="card">
-            <div class="card-icon">🛡️</div>
+            <div class="card-head">
+              <div class="card-icon">🛡️</div>
+              <span class="tier-pill free">Free Forever</span>
+            </div>
             <h3>CoreAudio Hardware Kill-Switch</h3>
-            <p>Directly locks all macOS input devices at the hardware abstraction layer with zero latency.</p>
+            <p>Mutes your active microphone through CoreAudio, and carries the mute along when the input device changes.</p>
             <ul>
               <li>Works across Zoom, Teams, Meet, Slack & browsers</li>
-              <li>Blocks background unmute attempts automatically</li>
-              <li>Protects built-in, USB & Bluetooth microphones</li>
+              <li>Real-time waveform, gain slider & device picker</li>
+              <li>Center HUD & global <code>⇧⌘M</code> toggle free forever</li>
             </ul>
           </div>
 
           <div class="card">
-            <div class="card-icon">💻</div>
+            <div class="card-head">
+              <div class="card-icon">💻</div>
+              <span class="tier-pill pro">Pro · $9.99</span>
+            </div>
             <h3>Physical MacBook Notch HUD</h3>
             <p>Turns your MacBook Air or MacBook Pro camera notch into a Dynamic Island-style privacy indicator.</p>
             <ul>
               <li>Glows crimson red around the notch when muted</li>
-              <li>Real-time speaking waveform when your mic is live</li>
-              <li>Floating Virtual Island pill on external monitors</li>
+              <li>Dynamic Island status dropdown on toggle</li>
+              <li>Draggable Floating Pill for external monitors</li>
             </ul>
           </div>
 
           <div class="card" id="safety-net">
-            <div class="card-icon">🌙</div>
+            <div class="card-head">
+              <div class="card-icon">🌙</div>
+              <span class="tier-pill pro">Pro · $9.99</span>
+            </div>
             <h3>Smart Hot-Mic Safety Net</h3>
             <p>Automatic guardrails that mute your microphone when you forget:</p>
             <ul>
               <li>Auto-Mute on Mac Sleep & Screen Lock</li>
               <li>AirPods / Headphone Disconnect Guard</li>
-              <li>Auto-Mute when Zoom, Teams, or Meet closes</li>
-              <li>10-minute Idle Timeout protection</li>
+              <li>Auto-Mute when Zoom, Teams, or Webex quits</li>
+              <li>Configurable Idle Timeout protection (5–30m)</li>
             </ul>
           </div>
 
           <div class="card">
-            <div class="card-icon">⌨️</div>
-            <h3>3 Pro Shortcut Modes</h3>
+            <div class="card-head">
+              <div class="card-icon">⌨️</div>
+              <span class="tier-pill pro">Toggle Free · PTT Pro</span>
+            </div>
+            <h3>3 Fast Shortcut Modes</h3>
             <p>Customize your workflow with instant keyboard control from any window:</p>
             <ul>
-              <li><strong>Toggle Mute:</strong> Tap <code>⇧⌘M</code> to lock/unlock</li>
-              <li><strong>Push-to-Talk:</strong> Hold key to speak like a walkie-talkie</li>
-              <li><strong>Push-to-Mute:</strong> Hold key to silence coughs</li>
+              <li><strong>Toggle Mute (Free):</strong> Tap <code>⇧⌘M</code> to lock/unlock</li>
+              <li><strong>Push-to-Talk (Pro):</strong> Hold key to speak like a walkie-talkie</li>
+              <li><strong>Push-to-Mute (Pro):</strong> Hold key to silence coughs</li>
             </ul>
           </div>
 
           <div class="card">
-            <div class="card-icon">🔊</div>
+            <div class="card-head">
+              <div class="card-icon">🔊</div>
+              <span class="tier-pill free">Free Forever</span>
+            </div>
             <h3>HD Acoustic Earcon Feedback</h3>
             <p>Know your mic state without even looking at the screen thanks to crisp audio confirmation tones.</p>
             <ul>
@@ -904,7 +966,10 @@
           </div>
 
           <div class="card">
-            <div class="card-icon">🌐</div>
+            <div class="card-head">
+              <div class="card-icon">🌐</div>
+              <span class="tier-pill free">Free Forever</span>
+            </div>
             <h3>Native 6-Language Support</h3>
             <p>Fully localized interface and menu bar controls right out of the box:</p>
             <ul>
@@ -921,27 +986,27 @@
     <section id="pricing">
       <div class="container">
         <div class="text-center">
-          <span class="section-tag">No Subscriptions Ever</span>
-          <h2 class="section-title">Pay Once. Own MicShield Forever.</h2>
-          <p class="section-desc">Try every Pro feature free for 7 days. Upgrade to a lifetime license for less than the price of lunch.</p>
+          <span class="section-tag">Free + Lifetime Pro</span>
+          <h2 class="section-title">Free Core Mute Forever. $9.99 for Everything Pro.</h2>
+          <p class="section-desc">Try every Pro feature free for 7 days with zero card needed. Keep Core Mute free forever, or unlock Pro permanently for $9.99.</p>
         </div>
 
         <div class="pricing-wrap">
           <div class="price-card">
             <div>
-              <h3>7-Day Free Trial</h3>
-              <div class="price-num">$0 <span>/ 7 days</span></div>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">Test every feature on your Mac with no credit card required.</p>
+              <h3>Free Forever</h3>
+              <div class="price-num">$0 <span>/ forever (+ 7-day Pro trial)</span></div>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Unlimited hardware muting forever—plus an automatic 7-day Pro trial on first launch.</p>
               <ul class="price-list">
-                <li>Full CoreAudio Hardware Kill-Switch</li>
-                <li>MacBook Notch HUD & Virtual Island</li>
-                <li>Push-to-Talk & Push-to-Mute Modes</li>
-                <li>All 5 Smart Safety Net Automations</li>
-                <li>Apple Notarized Universal DMG</li>
+                <li>Unlimited CoreAudio Hardware Kill-Switch (<code>⇧⌘M</code>)</li>
+                <li>Live Audio Waveform, Device Picker & Gain Slider</li>
+                <li>Center Overlay HUD & Acoustic Earcon Cues</li>
+                <li>All 6 Native Languages & Launch at Login</li>
+                <li><strong>Bonus:</strong> 7-Day Full Pro Trial included free</li>
               </ul>
             </div>
-            <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg" class="btn btn-lg btn-outline" style="width: 100%;">
-               Download Free Trial (.dmg)
+            <a href="https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg" class="btn btn-lg btn-outline" style="width: 100%;">
+               Download Free (.dmg)
             </a>
           </div>
 
@@ -950,17 +1015,17 @@
             <div>
               <h3>MicShield Pro Lifetime</h3>
               <div class="price-num">$9.99 <span>USD / one-time</span></div>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">Instant license key delivery via Dodo Payments (Apple Pay, Google Pay & Cards).</p>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Instant license key via Dodo Payments (Apple Pay, Google Pay & Cards). Valid on 5 Macs.</p>
               <ul class="price-list">
-                <li><strong>Lifetime License</strong> — No recurring fees ever</li>
-                <li>Activate on up to <strong>5 Macs</strong></li>
-                <li>All future macOS updates included free</li>
-                <li>100% Offline after instant activation</li>
-                <li><strong>14-Day 100% Money-Back Guarantee</strong></li>
+                <li><strong>Physical MacBook Notch HUD</strong> & Dynamic Island</li>
+                <li><strong>Floating Pill Widget</strong> for external displays</li>
+                <li><strong>Push-to-Talk</strong> & <strong>Push-to-Mute</strong> shortcut modes</li>
+                <li><strong>All 5 Smart Safety Net Automations</strong></li>
+                <li>Lifetime updates on <strong>5 Macs</strong> · <strong>14-Day Refund Guarantee</strong></li>
               </ul>
             </div>
             <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1" class="btn btn-lg btn-buy" style="width: 100%;">
-              ⚡ Buy Lifetime License — $9.99
+              ⚡ Get Lifetime Pro — $9.99
             </a>
           </div>
         </div>
@@ -982,18 +1047,23 @@
           </details>
 
           <details class="faq-item">
+            <summary>What happens after the 7-day Pro trial ends?</summary>
+            <p>Nothing locks you out and you are never billed automatically. Your CoreAudio hardware kill-switch (<code>⇧⌘M</code>), live waveform, gain slider, device picker, earcon chimes, and center HUD stay free forever. Pro extras (MacBook Notch HUD, Floating Pill, Push-to-Talk/Mute, and Smart Safety Net) pause until you enter a $9.99 Lifetime Pro key.</p>
+          </details>
+
+          <details class="faq-item">
             <summary>What happens if I have an external monitor or a Mac without a camera notch?</summary>
-            <p>On MacBooks with a camera cutout, MicShield hugs the physical notch. On non-notch Macs or external displays, MicShield automatically renders a sleek floating "Virtual Island" pill at the top of your screen.</p>
+            <p>On MacBooks with a camera cutout, MicShield hugs the physical notch. On non-notch Macs or external displays, MicShield Pro automatically renders a sleek floating "Virtual Island" pill on your screen, while the center Overlay HUD works on every display free forever.</p>
           </details>
 
           <details class="faq-item">
             <summary>Is MicShield notarized by Apple? Does it record or send any audio to the cloud?</summary>
-            <p>Yes, MicShield is 100% signed and notarized by Apple (`Developer ID: Amar Mote - 32WL3CJ7B6`) and runs inside Apple's Hardened Runtime. It has zero telemetry, zero analytics, and never records or transmits your audio anywhere.</p>
+            <p>Yes, MicShield is 100% signed and notarized by Apple (built by Kishor Gaikwad; publishing Developer ID certificate: <code>Amar Mote - 32WL3CJ7B6</code>) and runs inside Apple's Hardened Runtime. It has zero telemetry, zero analytics, and never records or transmits your audio anywhere.</p>
           </details>
 
           <details class="faq-item">
             <summary>How do I activate my Pro license key after purchasing?</summary>
-            <p>After completing your $9.99 checkout on Dodo Payments, you'll receive your license key via email immediately. Click the MicShield icon in your Mac's menu bar, select "Activate License...", and paste your key.</p>
+            <p>After completing your $9.99 one-time checkout on Dodo Payments, your license key arrives immediately via email. Click the MicShield icon in your Mac's menu bar, click <strong>Enter License Key</strong> (or the top license badge), paste your key, and click <strong>Activate License</strong>. Every purchase includes a 14-day 100% money-back guarantee.</p>
           </details>
         </div>
       </div>
@@ -1004,7 +1074,7 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://github.com/kishorgaikwad2016/MicShield">GitHub Repository</a>
-        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/download/v1.0.0/MicShield.dmg">Direct DMG Download</a>
+        <a href="https://github.com/kishorgaikwad2016/MicShield/releases/latest/download/MicShield.dmg">Direct DMG Download</a>
         <a href="https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1">Buy Pro License ($9.99)</a>
         <a href="https://micshield.macupdate.com/">MacUpdate</a>
         <a href="https://github.com/kishorgaikwad2016/MicShield/blob/main/LICENSE.md">EULA & Refund Policy</a>
@@ -1029,12 +1099,12 @@
         notch.classList.remove('live');
         text.textContent = 'MIC MUTED · LOCKED';
         title.textContent = '🔴 Hardware Input Locked (CoreAudio HAL)';
-        desc.textContent = 'All audio input devices are silenced at the system hardware level. Zoom, Teams, Meet, and background apps cannot hear you.';
+        desc.textContent = 'Your microphone is silenced at the system level. Zoom, Teams, Meet, and background apps cannot hear you.';
         menuIcon.textContent = '🛡️ Locked';
       } else {
         notch.classList.add('live');
         text.textContent = 'MIC LIVE · ON AIR';
-        title.textContent = '🟢 Microphone Live — Real-Time Notch Waveform';
+        title.textContent = '🟢 Microphone Live';
         desc.textContent = 'Your microphone is active and broadcasting. Press ⇧⌘M or close your meeting to lock hardware input immediately.';
         menuIcon.textContent = '🎙️ Live';
       }

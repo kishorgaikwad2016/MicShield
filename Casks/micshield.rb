@@ -1,6 +1,6 @@
 cask "micshield" do
-  version "1.0.0"
-  sha256 "376c997db319ae4fa99566d7b3db7484a7bdcbd31a408d42ae19657b70a89920"
+  version "1.0.1"
+  sha256 "70524cb197b25b20e3825247102257b66ad80df8f8b59bfa2932231997867f0a"
 
   url "https://github.com/kishorgaikwad2016/MicShield/releases/download/v#{version}/MicShield.dmg"
   name "MicShield"
@@ -12,7 +12,6 @@ cask "micshield" do
     strategy :github_latest
   end
 
-  auto_updates true
   depends_on macos: ">= :sonoma"
 
   app "MicShield.app"
