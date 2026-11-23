@@ -1,6 +1,6 @@
 cask "micshield" do
-  version "1.0.1"
-  sha256 "70524cb197b25b20e3825247102257b66ad80df8f8b59bfa2932231997867f0a"
+  version "1.1.0"
+  sha256 "0b293bb932dfb0d021ee065d3536fbceb35ba18742610900584fe6b6450c14c6"
 
   url "https://github.com/kishorgaikwad2016/MicShield/releases/download/v#{version}/MicShield.dmg"
   name "MicShield"

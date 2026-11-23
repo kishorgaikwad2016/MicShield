@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0 (2026-11-23)
+
+### Added
+- Mute Lock: if another app unmutes your mic, MicShield mutes it again. On by default, free.
+- Option to mute every physical microphone at once.
+- A short welcome guide for new users, and a Settings window.
+- Choose one mute alert: notch, center of screen, or off. Warnings are always shown.
+- The whole app is translated, including license messages.
+
+### Changed
+- Clearer pricing: one $9.99 price everywhere, a list of exactly what Pro adds, and reminders only twice (two days before the trial ends, and when it ends; never during a call).
+- The menu bar panel holds only everyday controls.
+- The idle timer never mutes while another app is using the mic.
+- Push-to-talk starts muted.
+- Meeting End Guard matches meeting apps exactly, so a helper process quitting no longer mutes you.
+
+### Fixed
+- Releasing the cough button no longer unmutes after a Safety Net guard has muted the mic.
+- Changing mode while holding the shortcut no longer leaves the mic open or the shortcut stuck.
+
 ## 1.0.1 (2026-11-22)
 
 ### Fixed

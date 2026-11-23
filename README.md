@@ -20,7 +20,7 @@
 
 ## ⚡ Overview
 
-**MicShield** gives you 100% confidence over your microphone privacy. Whether you're on Zoom, Microsoft Teams, Google Meet, Slack Huddles, or Discord, MicShield cuts your microphone at the **CoreAudio hardware level** with a single keystroke.
+**MicShield** shows at a glance whether your microphone is muted, and keeps it muted. Whether you're on Zoom, Microsoft Teams, Google Meet, Slack Huddles, or Discord, MicShield silences your microphone through macOS CoreAudio controls with a single keystroke.
 
 Never experience that heart-stopping panic: *"Wait... was I on mute just now?!"*
 
@@ -46,7 +46,8 @@ Never experience that heart-stopping panic: *"Wait... was I on mute just now?!"*
 
 ### 🛡️ Hardware-Level Global Mute
 - Directly controls CoreAudio input hardware.
-- Mutes your active microphone, and carries the mute along when you switch devices.
+- **Mute Lock** mutes again if another app unmutes your mic.
+- Mutes your active microphone, or every physical microphone, and carries the mute along when you switch devices.
 - Works across **all meeting apps & browsers** (Zoom, Teams, Meet, Slack, Discord, Webex, Loom, FaceTime) without requiring individual app integrations.
 - Instant response with zero latency.
 
@@ -61,11 +62,11 @@ MicShield protects your privacy on auto-pilot:
 - **Auto-Mute on Screen Lock**: Mutes as soon as you lock your screen or walk away.
 - **Headphone Disconnect Guard**: Instantly mutes if your AirPods or Bluetooth headset disconnects to prevent speaker/mic bleed.
 - **Meeting Exit Guard**: Mutes automatically when Zoom, Teams, Webex, Slack or another known meeting app quits.
-- **Idle Timeout**: Automatically mutes if nobody touches your Mac for 10 minutes (5–30 minutes or off).
+- **Idle Timeout**: Automatically mutes if nobody touches your Mac for 10 minutes (5–30 minutes or off), and never while another app is using the mic.
 
 ### ⌨️ Pro Shortcut Modes
-- **Toggle Mute**: Press shortcut (`⇧⌘M` or custom) to switch between Muted and Live.
-- **Push-to-Talk (Walkie-Talkie)**: Hold the key to speak, release to mute.
+- **Toggle Mute**: Press the shortcut (`⇧⌘M`) to switch between Muted and Live.
+- **Push-to-Talk (Walkie-Talkie)**: Starts muted. Hold the key to speak, release to mute.
 - **Push-to-Mute (Cough Button)**: Hold the key to temporarily silence coughs or background noise.
 
 ### 🔊 High-Definition Earcon Feedback
@@ -119,9 +120,9 @@ brew install kishorgaikwad2016/tap/micshield
 
 ## 📄 License & Pricing
 
-- **Free Forever Tier**: Unlimited CoreAudio hardware kill-switch (`⇧⌘M`), waveform visualizer, gain slider, device selector, audio cues, center HUD, and 6 languages.
-- **7-Day Pro Trial**: Automatic full access to Notch HUD, Floating Pill, Push-to-Talk/Mute, and all 5 Smart Safety Net automations — no credit card required.
-- **Pro Lifetime License — `$9.99`**: One-time purchase for lifetime updates on up to 5 Macs via [Dodo Payments (Apple Pay, Google Pay & Cards)](https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1).
+- **Free forever**: unlimited muting (`⇧⌘M`), Mute Lock, mute all microphones, center alert and sound cues, waveform, device picker, and 6 languages.
+- **7-Day Pro Trial**: Every Pro feature for 7 days, with no card required. Muting keeps working afterwards.
+- **Pro Lifetime License — `$9.99`**: Notch alert, floating pill, push-to-talk/mute and the five Smart Safety Net automations. One-time purchase, no subscription, lifetime updates on up to 5 Macs, paid in your own currency via [Dodo Payments (Apple Pay, Google Pay & Cards)](https://checkout.dodopayments.com/buy/pdt_0NpCRpTuAiRk2Jz7qXlHh?quantity=1).
 - **14-Day Money-Back Guarantee**: If you are not completely satisfied with MicShield Pro, email support within 14 days of purchase for a 100% full refund — no questions asked.
 
 ---
