@@ -285,6 +285,33 @@
       margin-bottom: 26px;
     }
 
+    /* Demo video */
+    .demo-video-wrap {
+      max-width: 1000px;
+      margin: 0 auto 56px;
+    }
+
+    .demo-video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      border: 1px solid var(--border-strong);
+      background: #0b0d14;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    .demo-video-caption {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .demo-video-wrap { max-width: 420px; }
+      .demo-video { aspect-ratio: 9 / 16; max-height: 82vh; object-fit: contain; }
+    }
+
     .brew-box {
       display: inline-flex;
       align-items: center;
@@ -824,6 +851,23 @@
           <span>$ brew install kishorgaikwad2016/tap/micshield</span>
           <button onclick="copyBrew(this)">Copy</button>
         </div>
+
+        <!-- Mute Lock demo -->
+        <div class="demo-video-wrap">
+          <video class="demo-video" id="demo-video" autoplay muted loop playsinline preload="metadata"
+                 poster="media/poster-16x9.jpg"
+                 aria-label="20-second demo: press Shift-Command-M on a call, the notch turns red, another app tries to unmute the mic and MicShield mutes it again within milliseconds.">
+            <source src="media/demo-16x9.mp4" type="video/mp4">
+          </video>
+          <p class="demo-video-caption">Mute Lock in 20 seconds: another app tries to unmute you, MicShield puts the mute back.</p>
+        </div>
+        <script>
+          (function () {
+            var v = document.getElementById('demo-video');
+            if (window.matchMedia('(max-width: 600px)').matches) { v.poster = 'media/poster-9x16.jpg'; v.querySelector('source').src = 'media/demo-9x16.mp4'; v.load(); }
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.controls = true; v.pause(); }
+          })();
+        </script>
 
         <!-- Interactive Notch Simulator -->
         <div class="mac-preview-wrap">
