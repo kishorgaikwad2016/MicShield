@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1 (2026-11-24)
+
+### Fixed
+- Notch alerts no longer cut off long microphone names ("Kept MacBook Air Microp…"). The message wraps onto extra lines, and only very long names are shortened, in the middle, so the end of the message stays readable.
+- In German, French and Spanish, the notch alert's status line and badge no longer wrap awkwardly.
+- The center-of-screen alert shrinks long messages slightly before shortening them.
+
 ## 1.1.0 (2026-11-23)
 
 ### Added
